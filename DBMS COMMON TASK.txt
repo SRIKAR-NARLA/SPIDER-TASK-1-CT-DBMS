@@ -1,0 +1,48 @@
+mongo
+use inventoryDB
+db.createCollection("products")
+db.products.insertMany([
+    {
+        name: "Product 1",
+        description: "Description for Product 1",
+        price: 10.0,
+        quantity: 100,
+        category: "Category A"
+    },
+    {
+        name: "Product 2",
+        description: "Description for Product 2",
+        price: 15.0,
+        quantity: 50,
+        category: "Category B"
+    },
+    {
+        name: "Product 3",
+        description: "Description for Product 3",
+        price: 20.0,
+        quantity: 75,
+        category: "Category A"
+    },
+    {
+        name: "Product 4",
+        description: "Description for Product 4",
+        price: 25.0,
+        quantity: 200,
+        category: "Category C"
+    },
+    {
+        name: "Product 5",
+        description: "Description for Product 5",
+        price: 30.0,
+        quantity: 150,
+        category: "Category B"
+    }
+])
+db.products.find().pretty()
+db.products.find({ price: { $lt: 20.0 } }).pretty()
+db.products.find({ quantity: { $gt: 100 } }).pretty()
+db.products.updateOne(
+    { name: "Product 1" },
+    { $set: { price: 12.0 } }
+)
+db.products.deleteOne({ name: "Product 5" })
